@@ -20,9 +20,10 @@ RUN npm install -g @google/gemini-cli@0.35.0
 # Copy sandbox policy
 COPY policy.yaml /etc/openshell/policy.yaml
 
-# Create Gemini config directory
+# Create Gemini config directory with initialized projects.json
 RUN mkdir -p /sandbox/.gemini && \
-    chown sandbox:sandbox /sandbox/.gemini
+    echo '{"projects":{}}' > /sandbox/.gemini/projects.json && \
+    chown -R sandbox:sandbox /sandbox/.gemini
 
 USER sandbox
 
