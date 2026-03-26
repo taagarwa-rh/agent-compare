@@ -1,0 +1,5 @@
+- [ ] Fix issue with Claude / Gemini not working in sandbox
+  - Claude appears to be a network policy issue, likely a missing allowed host
+  - Gemini issue is unclear
+- [ ] Add support for custom network policies
+- [ ] Add MLflow support - remember network policy needs to allow mlflow too
