@@ -56,6 +56,7 @@ class Playground:
         for p in providers:
             shell_cmds = None
             policy = None
+            args = None
             if p in CUSTOM_PROVIDERS_MAP:
                 custom_provider = CUSTOM_PROVIDERS_MAP[p]
                 args = custom_provider.args

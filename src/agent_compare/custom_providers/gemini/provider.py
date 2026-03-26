@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 GEMINI_ENVVARS = [
     "GOOGLE_CLOUD_PROJECT",
+    "GEMINI_API_KEY",
 ]
 
 
@@ -21,7 +22,7 @@ class CustomGeminiProvider(CustomProvider):
         parent_dir = Path(__file__).resolve().parent
         args = ["--from", str(parent_dir)]
         env = os.environ.copy()
-        export_vals = "\n".join([f"export {var}={env[var]}" for var in GEMINI_ENVVARS])
+        export_vals = "\n".join([f"export {var}={env[var]}" for var in GEMINI_ENVVARS if var in env])
         shell_cmds = ["bash", "-c", f"cat >> ~/.bashrc << 'EOF'\n{export_vals}\nEOF"]
         super().__init__(args=args, shell_cmds=shell_cmds)
 

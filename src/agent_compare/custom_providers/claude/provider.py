@@ -25,7 +25,7 @@ class CustomClaudeProvider(CustomProvider):
         parent_dir = Path(__file__).resolve().parent
         args = ["--from", str(parent_dir)]
         env = os.environ.copy()
-        export_vals = "\n".join([f"export {var}={env[var]}" for var in CLAUDE_ENVVARS])
+        export_vals = "\n".join([f"export {var}={env[var]}" for var in CLAUDE_ENVVARS if var in env])
         shell_cmds = ["bash", "-c", f"cat >> ~/.bashrc << 'EOF'\n{export_vals}\nEOF"]
         super().__init__(args=args, shell_cmds=shell_cmds)
 
